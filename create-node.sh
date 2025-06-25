@@ -236,16 +236,17 @@ cat > "$NODE_DIR/package.json" << EOF
     "dist"
   ],
   "dependencies": {
-    "n8n-workflow": "^1.0.0"
+    "n8n-core": "^1.99.0",
+    "n8n-workflow": "^1.82.0"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.0.0",
-    "jest": "^29.0.0",
-    "@types/jest": "^29.0.0",
-    "typescript": "^5.0.0"
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.0",
+    "typescript": "^5.6.0"
   },
   "keywords": [
     "n8n",

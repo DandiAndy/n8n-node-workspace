@@ -5,32 +5,32 @@ A Docker-based development setup with intelligent hot-reload for creating n8n cu
 ## Project Structure
 
 ```
-n8n-nodes/
+n8n-node-workspace/
 ├── docker-compose.yaml        # Defines the services for n8n and custom nodes
 ├── Dockerfile.n8n            # Custom n8n Dockerfile with nodemon for development
 ├── start-with-watch.sh        # Startup script for n8n with file watching
 ├── create-node.sh             # Script to generate new custom nodes
-├── import-workflows.sh        # Script to import workflows via API (optional)
+├── .env.example               # Template for environment variables
 ├── nodes/                     # Directory containing custom nodes
 │   └── n8n-nodes-example/     # Example custom node
 │       ├── Dockerfile         # Dockerfile for the example node
 │       ├── package.json       # Dependencies and scripts for the example node
+│       ├── package-lock.json  # NPM lock file
+│       ├── tsconfig.json      # TypeScript configuration
 │       └── nodes/             # Directory containing the node implementation
-│           └── ExampleNode.node.ts
+│           ├── ExampleNode.node.ts   # Node implementation
+│           └── ExampleNode.node.json # Node metadata
 ├── workflows/                 # Directory for workflows (auto-imported on startup)
-│   ├── README.md             # Detailed workflow documentation
-│   └── example-workflow.json  # Example workflow
+│   ├── README.md              # Detailed workflow documentation
+│   └── Example_Workflow.json  # Example workflow
 ├── credentials/               # Directory for credentials (auto-imported with env substitution)
-│   ├── README.md             # Detailed credential documentation
+│   ├── README.md              # Detailed credential documentation
 │   ├── example-api-credentials.json      # Example API credentials
-│   └── slack-api-credentials.json        # Example Slack credentials
+│   └── example-slack-api-credentials.json # Example Slack credentials
 ├── data/                      # Directory for persistent n8n data
-│   └── .gitkeep              # Keeps the data directory in version control
-├── ollama-data/              # Directory for Ollama AI model data
-├── examples/                 # Directory for examples (currently empty)
-├── .env                      # Environment variables for n8n configuration
-├── .env.example              # Template for environment variables
-└── README.md                 # Project documentation
+│   └── .gitkeep               # Keeps the data directory in version control
+├── ollama-data/               # Directory for Ollama AI model data
+└── README.md                  # Project documentation
 ```
 
 ## Setup Instructions
@@ -231,7 +231,7 @@ Example HTTP request node configuration in n8n:
 
 ## Custom Nodes
 
-This project includes example custom nodes:
+This project includes an example custom node:
 
 - **ExampleNode**: An example custom node demonstrating basic functionality.
 
