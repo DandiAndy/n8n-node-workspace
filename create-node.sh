@@ -65,6 +65,33 @@ validate_node_name() {
     fi
 }
 
+# Function to create Dockerfile
+create_dockerfile() {
+    local dockerfile_path="$NODE_DIR/Dockerfile"
+    
+    echo -e "${YELLOW}Creating Dockerfile...${NC}"
+    
+    cat > "$dockerfile_path" << EOF
+FROM node:18-alpine
+
+WORKDIR /usr/src/app
+
+# Copy package files
+COPY package.json package-lock.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Run build watch
+CMD ["npm", "run", "build:watch"]
+EOF
+
+    echo -e "${GREEN}✅ Created Dockerfile${NC}"
+}
+
 # Function to update docker-compose.yaml
 update_docker_compose() {
     local docker_compose_file="docker-compose.yaml"
@@ -716,6 +743,12 @@ module.exports = {
 };
 EOF
 
+# Create Dockerfile if docker option is enabled
+if [ "$UPDATE_DOCKER_COMPOSE" = true ]; then
+    echo ""
+    create_dockerfile
+fi
+
 # Update docker-compose.yaml if requested
 if [ "$UPDATE_DOCKER_COMPOSE" = true ]; then
     echo ""
@@ -753,6 +786,9 @@ echo -e "  .eslintrc.js"
 echo -e "  .gitignore"
 echo -e "  jest.config.js"
 echo -e "  README.md"
+if [ "$UPDATE_DOCKER_COMPOSE" = true ]; then
+    echo -e "  Dockerfile"
+fi
 echo ""
 echo -e "${YELLOW}Don't forget to:${NC}"
 echo -e "- Update the API endpoints in the node file"
