@@ -231,16 +231,11 @@ Example HTTP request node configuration in n8n:
 
 ## Custom Nodes
 
-This project includes two custom nodes:
+This project includes example custom nodes:
 
 - **ExampleNode**: An example custom node demonstrating basic functionality.
-- **CustomNode**: A custom node that can be tailored to specific use cases.
 
 Each custom node has its own directory containing a Dockerfile, package.json, and the node implementation.
-
-## Examples
-
-The `examples` directory contains sample workflows and credentials that demonstrate how to use the custom nodes in n8n. You can import these workflows into your n8n instance to see them in action.
 
 ## Contributing
 
