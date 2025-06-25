@@ -1,0 +1,15 @@
+{
+  "node": "n8n-nodes-example.ExampleNode",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": [
+    "Miscellaneous"
+  ],
+  "resources": {
+    "primaryDocumentation": [
+      {
+        "url": "https://github.com/your-username/n8n-nodes"
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "n8n-nodes-example",
+  "version": "1.0.0",
+  "description": "Example custom node for n8n",
+  "main": "dist/nodes/ExampleNode.node.js",
+  "scripts": {
+    "build": "npx tsc",
+    "build:watch": "npx tsc --watch",
+    "test": "jest"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [
+      "dist/nodes/ExampleNode.node.js"
+    ]
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "n8n-core": "^0.100.0",
+    "n8n-workflow": "^0.100.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "jest": "^26.0.0",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^14.0.0"
+  },
+  "keywords": [
+    "n8n",
+    "custom-node"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

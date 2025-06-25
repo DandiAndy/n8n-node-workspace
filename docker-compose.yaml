@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  n8n:
+    build:
+      context: .
+      dockerfile: Dockerfile.n8n
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+      - ./workflows:/home/node/.n8n/workflows-import
+      - ./credentials:/home/node/.n8n/credentials-import
+      - ./nodes/n8n-nodes-example:/home/node/.n8n/custom/n8n-nodes-example
+    ports:
+      - "5678:5678"
+    networks:
+      - n8n_network
+    depends_on:
+      - n8n-nodes-example
+
+  n8n-nodes-example:
+    build:
+      context: ./nodes/n8n-nodes-example
+    volumes:
+      - ./nodes/n8n-nodes-example:/usr/src/app
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    restart: unless-stopped
+    networks:
+      - n8n_network
+
+networks:
+  n8n_network:
+    driver: bridge

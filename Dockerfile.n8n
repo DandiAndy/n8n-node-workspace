@@ -1,0 +1,17 @@
+FROM docker.n8n.io/n8nio/n8n:latest
+
+# Set the user to root
+USER root
+
+# Install nodemon globally for watching custom nodes
+RUN npm install -g nodemon
+
+COPY start-with-watch.sh /usr/local/bin/start-with-watch.sh
+
+RUN chmod +x /usr/local/bin/start-with-watch.sh
+
+# set the user back to node
+USER node
+
+# use tini as the init system
+ENTRYPOINT ["tini", "--", "/usr/local/bin/start-with-watch.sh"]
